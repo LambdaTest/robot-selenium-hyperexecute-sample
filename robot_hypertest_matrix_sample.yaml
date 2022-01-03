@@ -6,8 +6,8 @@ matrix:
   os: [mac]
   files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
 env:
-  LT_USERNAME: himanshujlambdatest
-  LT_ACCESS_KEY: zEGTJf8dFmJynRcgnd4mMUol1UPr4UJHRkVQH3IOMoCUCCPhOo
+  LT_USERNAME: ${ YOUR_LAMBDATEST_USERNAME()}
+  LT_ACCESS_KEY: ${ YOUR_LAMBDATEST_ACCESS_KEY()}
 pre:
   - pip3 install poetry
   # Robot Framework and Robot Selenium Library need to be installed globally
