@@ -1,0 +1,28 @@
+---
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+runson: mac
+autosplit: true
+retryOnFailure: false
+maxRetries: 5
+concurrency: 2
+env:
+  LT_USERNAME: himanshujlambdatest
+  LT_ACCESS_KEY: zEGTJf8dFmJynRcgnd4mMUol1UPr4UJHRkVQH3IOMoCUCCPhOo
+pre:
+  - pip3 install poetry
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  - pip3 install robotframework
+  - pip3 install robotframework-seleniumlibrary
+  # Rest of the packages can be installed in venv
+  - poetry install
+# To run Windows tests from the Makefile, change the testDiscoverer command to the following
+# grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+# Excerpt from the Makefile
+# test_windows_10_edge_latest
+# test_windows_10_chrome_latest
+
+#testDiscoverer command to run tests only for macOS
+testDiscoverer: grep 'test_macos' makefile | sed 's/\(.*\):/\1 /'
+testRunnerCommand: make $test
