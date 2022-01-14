@@ -30,8 +30,8 @@ Environment variables *LT_USERNAME* and *LT_ACCESS_KEY* are added under *env* in
 
 ```yaml
 env:
- LT_USERNAME: ${ YOUR_LAMBDATEST_USERNAME()}
- LT_ACCESS_KEY: ${ YOUR_LAMBDATEST_ACCESS_KEY()}
+ LT_USERNAME: LT_USERNAME
+ LT_ACCESS_KEY: LT_ACCESS_KEY
 ```
 
 Automation tests using the Robot framework are located in the *Tests* folder (i.e. lt_todo_app.robot and lt_selenium_playground.robot). In the matrix YAML file, *files* specifies a list (or array) of *.robot* files that have to be executed on the Hypertest grid.
