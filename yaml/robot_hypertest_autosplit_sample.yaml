@@ -1,0 +1,29 @@
+---
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+runson: win
+autosplit: true
+retryOnFailure: true
+maxRetries: 3
+concurrency: 2
+env:
+  LT_USERNAME: LT_USERNAME
+  LT_ACCESS_KEY: LT_ACCESS_KEY
+# Dependency caching for Windows
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - pip_cache
+  - poetry_cache
+pre:
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  # Rest of the packages can be installed in venv
+  - pip3 install -r requirements.txt --cache-dir pip_cache
+  - poetry config virtualenvs.path poetry_cache
+  - poetry install
+post:
+  - cat yaml/robot_hypertest_autosplit_sample.yaml
+upload:
+  - report.html
+testDiscoverer: grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+testRunnerCommand: make $test

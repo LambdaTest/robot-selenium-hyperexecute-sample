@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "robot-parallel-tests"
+version = "0.1.0"
+description = ""
+authors = ["Himanshu Jagdish Sheth <himanshu.sheth@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7.9"
+flake8 = "^4.0.1"
+autopep8 = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

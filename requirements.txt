@@ -1,0 +1,4 @@
+selenium>=3.14.0
+robotframework
+robotframework-seleniumlibrary
+poetry
