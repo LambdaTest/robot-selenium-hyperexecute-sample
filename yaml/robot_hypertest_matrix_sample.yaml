@@ -5,9 +5,6 @@ testSuiteStep: 90
 matrix:
   os: [win]
   files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:

@@ -7,9 +7,6 @@ autosplit: true
 retryOnFailure: true
 maxRetries: 3
 concurrency: 2
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
