@@ -1,16 +1,32 @@
-# How to run Selenium automation tests on Hypertest (using Robot framework)
+# How to run Selenium automation tests on HyperTest (using Robot framework)
 
-Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's Parent Directory.
+Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's parent directory.
 
 * Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
 * Linux: https://downloads.lambdatest.com/concierge/linux/concierge
 * Windows: https://downloads.lambdatest.com/concierge/windows/concierge.exe
 
-[Note - The current project has concierge for macOS. Irrespective of the host OS, the concierge will auto-update whenever there is a new version on the server]
+[Note - The current project has the concierge for macOS. Irrespective of the host OS, the concierge will auto-update whenever an updated version is available on the server.]
+
+Before the tests are run, please set the environment variables LT_USERNAME & LT_ACCESS_KEY from the terminal. The account details are available on your [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
+
+For Windows:
+
+```bash
+set LT_USERNAME=LT_USERNAME
+set LT_ACCESS_KEY=LT_ACCESS_KEY
+```
+
+For macOS:
+
+```bash
+export LT_USERNAME=LT_USERNAME
+export LT_ACCESS_KEY=LT_ACCESS_KEY
+```
 
 ## Running tests in Robot using the Matrix strategy
 
-Matrix YAML file (robot_hypertest_matrix_sample.yaml) in the repo contains the following configuration:
+Matrix YAML file (*yaml/robot_hypertest_matrix_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -18,60 +34,86 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 ```
 
-Global timeout, testsuite timeout, and suite step timeout are each set to 90 minutes.
- 
-The target platform is set to macOS
+Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
+ 
+The target platform is set to Windows. Please set the *[os]* key to *[mac]* if the tests have to be executed on the macOS platform. 
 
 ```yaml
-os: [mac]
+os: [win]
 ```
 
-Environment variables *LT_USERNAME* and *LT_ACCESS_KEY* are added under *env* in the YAML file.
-
-```yaml
-env:
- LT_USERNAME: ${ YOUR_LAMBDATEST_USERNAME()}
- LT_ACCESS_KEY: ${ YOUR_LAMBDATEST_ACCESS_KEY()}
-```
-
-Automation tests using the Robot framework are located in the *Tests* folder (i.e. lt_todo_app.robot and lt_selenium_playground.robot). In the matrix YAML file, *files* specifies a list (or array) of *.robot* files that have to be executed on the Hypertest grid.
+Automation tests using the Robot framework are located in the *Tests* folder (i.e. lt_todo_app.robot and lt_selenium_playground.robot). In the matrix YAML file, *files* specifies a list (or array) of *.robot* files that have to be executed on the HyperTest grid.
 
 ```yaml
 files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
 ```
 
-Content under the *pre* directive is the pre-condition that will be run before the tests are executed on Hypertest grid. In the reference code, we have used Poetry tool for handling dependency and packaging of the Python packages that are required in running the tests.
+### Matrix Execution: Pre, Post, and Dependency Caching for faster package download & installation
 
-Poetry, Robot framework (robotframework), and Robot Selenium library (robotframework-seleniumlibrary) are installed by triggering the *pip* command. All the required packages are also installed in this step using *pip3 install*. Packages mentioned in *pyprojet.toml* are installed by triggering *poetry install* as a part of the *pre* condition.
+Dependency caching is enabled in the YAML file to ensure that the package dependencies are not downloaded in subsequent runs. The first step is to set the Key used to cache directories.
+
+```yaml
+cacheKey: '{{ checksum "requirements.txt" }}'
+```
+
+Set the array of files & directories to be cached. The packages installed using *pi3* are cached in *pip_cache* directory and packages installed using *poetry install* are cached in the *poetry_cache* directory.
+
+In a nutshell, all the packages will be cached in the *pip_cache* and *poetry_cache* directories.
+
+```yaml
+cacheDirectories:
+  - pip_cache
+  - poetry_cache
+```
+
+Content under the *pre* directive is the pre-condition that is triggered before the tests are executed on HyperTest grid. In the example, we have used *Poetry*  for handling dependency and packaging of the Python packages required for running the tests.
+
+Poetry, Robot framework (*robotframework*), and Robot Selenium library (*robotframework-seleniumlibrary*) are installed by triggering the *pip* command. All the required packages are also installed in this step using *pip3 install*. Packages mentioned in *pyprojet.toml* are installed by triggering *poetry install* as a part of the *pre* directive.
 
 ```yaml
 pre:
- pip3 install poetry
- pip3 install robotframework
- pip3 install robotframework-seleniumlibrary
- # Rest of the packages can be installed in venv
- poetry install
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  # Rest of the packages can be installed in venv
+  - pip3 install -r requirements.txt --cache-dir pip_cache
+  - poetry config virtualenvs.path poetry_cache
+  - poetry install
 ```
 
-The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands to be run for executing the tests are put in an array (with a '-' preceding each item). In the current YAML file, the *robot* execution is triggered using the *makefile* that is placed at the root location of the project. 
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we cat the contents of *yaml/robot_hypertest_matrix_sample.yaml*
+
+```yaml
+post:
+  - cat yaml/robot_hypertest_matrix_sample.yaml
+```
+
+The *upload* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports.html* file that contains details of the test execution is uploaded by HyperTest. 
+
+```yaml
+upload:
+  - report.html
+```
+
+The *testSuites* object contains a list of commands (that can be presented in an array). In the example, commands for executing the tests are put in an array (with a '-' preceding each item). The *robot* execution is triggered using the *makefile* that is placed at the root location of the project. Since the target *OS* is set to *win*, tests to be executed on Windows 10 are triggered as a part of the *testSuites* object:
 
 ```yaml
 testSuites:
-  - make test_macos_12_firefox_latest
-  - make test_macos_10_chrome_latest
+  - make test_windows_10_edge_latest
+  - make test_windows_10_chrome_latest
 ```
 
-The [user_name and access_key of LambdaTest](https://accounts.lambdatest.com/detail/profile) is appended to the *concierge* command using the *--user* and *--key* command-line options. The CLI option *--config* is used for providing the custom Hypertest YAML file (e.g. robot_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Robot files on the Hypertest grid.
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/robot_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in robot files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
 
 ```bash
-./concierge --user "${ YOUR_LAMBDATEST_USERNAME()}" --key "${ YOUR_LAMBDATEST_ACCESS_KEY()}" --config robot_hypertest_matrix_sample.yaml --verbose
+./concierge --download-artifacts --config yaml/robot_hypertest_matrix_sample.yaml --verbose
 ```
 
-Visit [Hypertest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
+
+<img width="1433" alt="robot_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152325763-3cfad68e-cf72-41d7-8165-717fb97f8c4e.png">
 
 ## Running tests in Robot using the Auto-Split strategy
 
-Auto-Split YAML file (robot_hypertest_autosplit_sample.yaml) in the repo contains the following configuration:
+Auto-split YAML file (yaml/robot_hypertest_autosplit_sample.yaml) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -79,69 +121,98 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 ```
 
-Global timeout, testsuite timeout, and suite step timeout are each set to 90 minutes.
- 
-The *runson* key determines the platform (or operating system) on which the tests would be executed. Here we have set the target OS as macOS.
+Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
+ 
+The *runson* key determines the platform (or operating system) on which the tests are executed. Here we have set the target OS as Windows.
 
 ```yaml
- runson: mac
+runson: win
 ```
 
-Auto-split is set to true in the YAML file. Retry on failure (*retryOnFailure*) is set to False. When set to true, failed test execution will be retried until the *maxRetries* are exhausted (or test execution is successful). Concurrency (i.e. number of parallel sessions) is set to 2.
+Auto-split is set to true in the YAML file.
 
 ```yaml
- autosplit: true
- retryOnFailure: false
- maxRetries: 5
- concurrency: 2
-```
+ autosplit: true
+``` 
 
-Environment variables *LT_USERNAME* and *LT_ACCESS_KEY* are added under *env* in the YAML file.
+*retryOnFailure* is set to true, instructing HyperTest to retry failed command(s). The retry operation is carried out till the number of retries mentioned in *maxRetries* are exhausted or the command execution results in a *Pass*. In addition, the concurrency (i.e. number of parallel sessions) is set to 2.
 
 ```yaml
-env:
- LT_USERNAME: ${ YOUR_LAMBDATEST_USERNAME()}
- LT_ACCESS_KEY: ${ YOUR_LAMBDATEST_ACCESS_KEY()}
+retryOnFailure: true
+maxRetries: 3
+concurrency: 2
 ```
 
-Content under the *pre* directive is the pre-condition that will be run before the tests are executed on Hypertest grid. In the reference code, we have used Poetry tool for handling dependency and packaging of the Python packages that are required in running the tests. Poetry, Robot framework (robotframework), and Robot Selenium library (robotframework-seleniumlibrary) are installed by triggering the *pip* command.
+### Auto-Split Execution: Pre, Post, and Dependency Caching for faster package download & installation
+
+Dependency caching is enabled in the YAML file to ensure that the package dependencies are not downloaded in subsequent runs. The first step is to set the Key used to cache directories.
 
 ```yaml
- pip3 install poetry
- pip3 install robotframework
- pip3 install robotframework-seleniumlibrary
- # Rest of the packages can be installed in venv
- poetry install
+cacheKey: '{{ checksum "requirements.txt" }}'
 ```
 
-All the required packages are also installed in this step using *pip3 install*. Packages mentioned in *pyprojet.toml* are installed by triggering *poetry install* as a part of the *pre* condition.
+Set the array of files & directories to be cached. The packages installed using *pi3* are cached in *pip_cache* directory and packages installed using *poetry install* are cached in the *poetry_cache* directory.
+
+In a nutshell, all the packages will be cached in the *pip_cache* and *poetry_cache* directories.
 
 ```yaml
- poetry install
+cacheDirectories:
+  - pip_cache
+  - poetry_cache
 ```
 
-The *testDiscoverer* contains the command that gives details of the tests that are a part of the project. Here, we are fetching the list of Robot files that would be further executed using the *value* passed in the *testRunnerCommand*
+Content under the *pre* directive is the pre-condition that is triggered before the tests are executed on HyperTest grid. In the example, we have used *Poetry*  for handling dependency and packaging of the Python packages required for running the tests.
+
+Poetry, Robot framework (*robotframework*), and Robot Selenium library (*robotframework-seleniumlibrary*) are installed by triggering the *pip* command. All the required packages are also installed in this step using *pip3 install*. Packages mentioned in *pyprojet.toml* are installed by triggering *poetry install* as a part of the *pre* directive.
+
+```yaml
+pre:
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  # Rest of the packages can be installed in venv
+  - pip3 install -r requirements.txt --cache-dir pip_cache
+  - poetry config virtualenvs.path poetry_cache
+  - poetry install
+```
+
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we cat the contents of *yaml/robot_hypertest_autosplit_sample.yaml*
+
+```yaml
+post:
+  - cat yaml/robot_hypertest_autosplit_sample.yaml
+```
+
+The *upload* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports.html* file that contains details of the test execution is uploaded by HyperTest. 
+
+```yaml
+upload:
+  - report.html
+```
+
+The *testDiscoverer* contains the command that gives details of the tests that are a part of the project. Here, we are fetching the list of Robot files that meet the search criteria mentioned in the command. The result is further passed in the *testRunnerCommand*
 
 ```bash
-grep 'test_macos' makefile | sed 's/\(.*\):/\1 /'
+grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
 ```
 
 Running the above command on the terminal gives the list of *makefile* labels that match our requirement:
 
 ```
-test_macos_10_chrome_latest 
-test_macos_12_firefox_latest
+test_windows_10_edge_latest 
+test_windows_10_chrome_latest
 ```
 
-The *testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
+*testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
 
 ```
 make $test
 ```
-Run the following command on the terminal to trigger the tests in Robot files on the Hypertest grid.
+
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/robot_hypertest_autosplit_sample.yaml). Run the following command on the terminal to trigger the tests in Robot files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
 
 ```bash
-./concierge --user "${ YOUR_LAMBDATEST_USERNAME()}" --key "${ YOUR_LAMBDATEST_ACCESS_KEY()}" --config robot_hypertest_autosplit_sample.yaml --verbose
-``` 
+./concierge --download-artifacts --config yaml/robot_hypertest_autosplit_sample.yaml --verbose
+```
 
-Visit [Hypertest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+
+<img width="1433" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152325722-d3c492a4-efc5-4d7e-b969-51b9d3f65231.png">
