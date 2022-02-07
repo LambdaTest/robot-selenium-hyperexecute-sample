@@ -294,7 +294,7 @@ uploadArtefacts:
 
 HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
 
-<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152780907-176c17e7-92d6-4111-ab4b-2be6a888bc47.png">
+<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
 
 Now, you can download the artefacts by clicking on the *Download* button as shown below:
 
@@ -310,7 +310,7 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
-<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152780907-176c17e7-92d6-4111-ab4b-2be6a888bc47.png">
+<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
