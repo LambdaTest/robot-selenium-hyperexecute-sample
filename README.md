@@ -274,5 +274,48 @@ The *testRunnerCommand* contains the command that is used for triggering the tes
 testRunnerCommand: python3 -s $test
 ```
 
+### Artefacts Management
+
+The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
+
+The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory/file (i.e. *report* that contains the test reports).
+
+```yaml
+mergeArtifacts: true
+
+uploadArtefacts:
+  [
+    {
+      "name": "report",
+      "path": ["report.html"]
+    }
+  ]
+```
+
+HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
+
+<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152780907-176c17e7-92d6-4111-ab4b-2be6a888bc47.png">
+
+Now, you can download the artefacts by clicking on the *Download* button as shown below:
+
+<img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152780924-058e83bd-7e9e-4bc9-a52d-834c78760af9.png">
+
+### Test Execution
+
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/robot_hypertest_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
+
+```bash
+./concierge --download-artifacts --verbose --config yaml/robot_hypertest_autosplit_sample.yaml
+```
+
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+
+<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152780907-176c17e7-92d6-4111-ab4b-2be6a888bc47.png">
+
+Shown below is the execution screenshot when the YAML file is triggered from the terminal:
+
+<img width="1412" alt="pyunit_autosplit_cli1_execution" src="https://user-images.githubusercontent.com/1688653/152523181-7acbfa32-e53a-454e-b4a6-dd7834498482.png">
+
+<img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152523202-7da45332-560c-4e9b-b77b-8e750faea20d.png">
 
 
