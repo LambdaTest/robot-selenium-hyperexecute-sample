@@ -1,12 +1,17 @@
 ---
+version: 0.1
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 runson: win
+
 autosplit: true
 retryOnFailure: true
-maxRetries: 3
+
+maxRetries: 5
 concurrency: 2
+
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
@@ -20,7 +25,20 @@ pre:
   - poetry install
 post:
   - cat yaml/robot_hypertest_autosplit_sample.yaml
-upload:
-  - report.html
-testDiscoverer: grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  [
+    {
+      "name": "report",
+      "path": ["report.html"]
+    }
+  ]
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+
 testRunnerCommand: make $test
