@@ -178,9 +178,15 @@ Shown below is the execution screenshot when the YAML file is triggered from the
 
 <img width="1101" alt="robot_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152779162-344651ff-7f80-40ca-9c8a-ebd3da8d9170.png">
 
-## Running tests in Robot using the Auto-Split strategy
+## Auto-Split Execution with Robot
 
-Auto-split YAML file (yaml/robot_hypertest_autosplit_sample.yaml) in the repo contains the following configuration:
+Auto-split execution mechanism lets you run tests at predefined concurrency and distribute the tests over the available infrastructure. Concurrency can be achieved at different levels - file, module, test suite, test, scenario, etc.
+
+For more information about auto-split execution, check out the [Auto-Split Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/#smart-auto-test-splitting)
+
+### Core
+
+Auto-split YAML file (*yaml/robot_hypertest_autosplit_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -206,11 +212,11 @@ Auto-split is set to true in the YAML file.
 
 ```yaml
 retryOnFailure: true
-maxRetries: 3
+maxRetries: 5
 concurrency: 2
 ```
 
-### Auto-Split Execution: Pre, Post, and Dependency Caching for faster package download & installation
+### Pre Steps and Dependency Caching
 
 Dependency caching is enabled in the YAML file to ensure that the package dependencies are not downloaded in subsequent runs. The first step is to set the Key used to cache directories.
 
@@ -218,9 +224,7 @@ Dependency caching is enabled in the YAML file to ensure that the package depend
 cacheKey: '{{ checksum "requirements.txt" }}'
 ```
 
-Set the array of files & directories to be cached. The packages installed using *pi3* are cached in *pip_cache* directory and packages installed using *poetry install* are cached in the *poetry_cache* directory.
-
-In a nutshell, all the packages will be cached in the *pip_cache* and *poetry_cache* directories.
+Set the array of files & directories to be cached. The packages installed using *pi3* are cached in *pip_cache* directory and packages installed using *poetry install* are cached in the *poetry_cache* directory. In a nutshell, all the packages will be cached in the *pip_cache* and *poetry_cache* directories.
 
 ```yaml
 cacheDirectories:
@@ -228,58 +232,47 @@ cacheDirectories:
   - poetry_cache
 ```
 
-Content under the *pre* directive is the pre-condition that is triggered before the tests are executed on HyperTest grid. In the example, we have used *Poetry*  for handling dependency and packaging of the Python packages required for running the tests.
+Content under the *pre* directive is the pre-condition that is triggered before the tests are executed on HyperTest grid. In the example, we have used *Poetry*  for handling dependency & packaging of the Python packages required for running the tests.
 
 Poetry, Robot framework (*robotframework*), and Robot Selenium library (*robotframework-seleniumlibrary*) are installed by triggering the *pip* command. All the required packages are also installed in this step using *pip3 install*. Packages mentioned in *pyprojet.toml* are installed by triggering *poetry install* as a part of the *pre* directive.
 
 ```yaml
 pre:
-  # Robot Framework and Robot Selenium Library need to be installed globally
-  # Rest of the packages can be installed in venv
   - pip3 install -r requirements.txt --cache-dir pip_cache
   - poetry config virtualenvs.path poetry_cache
   - poetry install
 ```
 
-Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we cat the contents of *yaml/robot_hypertest_autosplit_sample.yaml*
+### Post Steps
+
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/robot_hypertest_matrix_sample.yaml*
 
 ```yaml
 post:
-  - cat yaml/robot_hypertest_autosplit_sample.yaml
+  - cat yaml/robot_hypertest_autpsplit_sample.yaml
 ```
 
-The *upload* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports.html* file that contains details of the test execution is uploaded by HyperTest. 
+The *testDiscovery* directive contains the command that gives details of the mode of execution, along with detailing the command that is used for test execution. Here, we are fetching the list of Python files that would be further executed using the *value* passed in the *testRunnerCommand*
 
 ```yaml
-upload:
-  - report.html
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+  
+testRunnerCommand: make $test
 ```
 
-The *testDiscoverer* contains the command that gives details of the tests that are a part of the project. Here, we are fetching the list of Robot files that meet the search criteria mentioned in the command. The result is further passed in the *testRunnerCommand*
+Running the above command on the terminal will give a list of Python files that are located in the Project folder:
 
-```bash
-grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+* test_windows_10_edge_latest
+* test_windows_10_chrome_latest
+
+The *testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
+
+```yaml
+testRunnerCommand: python3 -s $test
 ```
 
-Running the above command on the terminal gives the list of *makefile* labels that match our requirement:
 
-```
-test_windows_10_edge_latest 
-test_windows_10_chrome_latest
-```
 
-*testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
-
-```
-make $test
-```
-
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/robot_hypertest_autosplit_sample.yaml). Run the following command on the terminal to trigger the tests in Robot files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
-
-```bash
-./concierge --download-artifacts --config yaml/robot_hypertest_autosplit_sample.yaml --verbose
-```
-
-Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
-
-<img width="1433" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152325722-d3c492a4-efc5-4d7e-b969-51b9d3f65231.png">
