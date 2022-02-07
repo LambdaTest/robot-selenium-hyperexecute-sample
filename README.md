@@ -322,11 +322,11 @@ Shown below is the execution screenshot when the YAML file is triggered from the
 
 In case you want to use any secret keys in the YAML file, the same can be set by clicking on the *Secrets* button the dashboard.
 
-<img width="703" alt="pyunit_secrets_key_1" src="https://user-images.githubusercontent.com/1688653/152540968-90e4e8bc-3eb4-4259-856b-5e513cbd19b5.png">
+<img width="703" alt="robot_secrets_key_1" src="https://user-images.githubusercontent.com/1688653/152540968-90e4e8bc-3eb4-4259-856b-5e513cbd19b5.png">
 
 Now create *secrets* that you can use in the HyperTest YAML file.
 
-<img width="362" alt="pyunit_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
+<img width="362" alt="robot_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
 
 ## Navigation in Automation Dashboard
 
@@ -342,5 +342,5 @@ Here is a screenshot that lists the automation test that was executed on the Hyp
 
 ## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
-* HyperTest HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
 * Lambdatest HomePage: https://www.lambdatest.com
+* HyperTest HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
