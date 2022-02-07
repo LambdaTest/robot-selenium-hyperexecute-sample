@@ -1,3 +1,15 @@
+<img width="92" alt="hypertest_logo" src="https://user-images.githubusercontent.com/1688653/152801836-db01cfce-df2f-436c-8cc7-fb707f33e95d.png">
+
+HyperTest is a smart test orchestration platform to run end-to-end Selenium tests at the fastest speed possible. HyperTest lets you achieve an accelerated time to market by providing a test infrastructure that offers optimal speed, test orchestration, and detailed execution logs.
+
+The overall experience helps teams test code and fix issues at a much faster pace. HyperTest is configured using a YAML file. Instead of moving the Hub close to you, HyperTest brings the test scripts close to the Hub!
+
+* <b>HyperTest HomePage</b>: https://www.lambdatest.com/hypertest
+* <b>Lambdatest HomePage</b>: https://www.lambdatest.com
+* <b>LambdaTest Support</b>: [support@lambdatest.com](mailto:support@lambdatest.com)
+
+To know more about how HyperTest does intelligent Test Orchestration, do check out [HyperTest Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/)
+
 # How to run Selenium automation tests on HyperTest (using Robot framework)
 
 * [Pre-requisites](#pre-requisites)
