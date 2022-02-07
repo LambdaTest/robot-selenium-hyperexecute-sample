@@ -318,4 +318,29 @@ Shown below is the execution screenshot when the YAML file is triggered from the
 
 <img width="1406" alt="robot_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152783131-f1b8ef7a-48ce-447b-ba48-320bdc43656e.png">
 
+## Secrets Management
 
+In case you want to use any secret keys in the YAML file, the same can be set by clicking on the *Secrets* button the dashboard.
+
+<img width="703" alt="pyunit_secrets_key_1" src="https://user-images.githubusercontent.com/1688653/152540968-90e4e8bc-3eb4-4259-856b-5e513cbd19b5.png">
+
+Now create *secrets* that you can use in the HyperTest YAML file.
+
+<img width="362" alt="pyunit_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
+
+## Navigation in Automation Dashboard
+
+HyperTest lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperTest Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperTest logs (and vice-versa) to get more details of the test execution.
+
+Shown below is the HyperTest Automation dashboard which also lists the tests that were executed as a part of the test suite:
+
+<img width="1238" alt="robot_hypertest_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
+
+Here is a screenshot that lists the automation test that was executed on the HyperTest grid:
+
+<img width="1423" alt="robot_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152784306-749c5d8c-b72c-40e9-a707-5374cc530430.png">
+
+## We are here to help you :)
+* LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
+* HyperTest HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
+* Lambdatest HomePage: https://www.lambdatest.com
