@@ -1,10 +1,14 @@
 ---
+version: 0.1
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 matrix:
-  os: [win]
   files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
+
+runson: win
+
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
@@ -18,8 +22,17 @@ pre:
   - poetry install
 post:
   - cat yaml/robot_hypertest_autosplit_sample.yaml
-upload:
-  - report.html
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  [
+    {
+      "name": "report",
+      "path": ["report.html"]
+    }
+  ]
+
 testSuites:
   - make test_windows_10_edge_latest
   - make test_windows_10_chrome_latest
