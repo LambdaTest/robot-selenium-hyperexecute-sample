@@ -21,7 +21,7 @@ pre:
   - poetry config virtualenvs.path poetry_cache
   - poetry install
 post:
-  - cat yaml/robot_hypertest_autosplit_sample.yaml
+  - cat yaml/robot_hypertest_matrix_sample.yaml
 
 mergeArtifacts: true
 
