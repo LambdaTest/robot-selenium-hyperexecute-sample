@@ -336,9 +336,16 @@ In case you want to use any secret keys in the YAML file, the same can be set by
 
 <img width="703" alt="robot_secrets_key_1" src="https://user-images.githubusercontent.com/1688653/152540968-90e4e8bc-3eb4-4259-856b-5e513cbd19b5.png">
 
-Now create *secrets* that you can use in the HyperTest YAML file.
+Now create a *secret* key that you can use in the HyperTest YAML file.
 
-<img width="362" alt="robot_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
+<img width="359" alt="secrets_management_1" src="https://user-images.githubusercontent.com/1688653/153250877-e58445d1-2735-409a-970d-14253991c69e.png">
+
+All you need to do is create an environment variable that uses the secret key:
+
+```yaml
+env:
+  PAT: ${{ .secrets.testKey }}
+```
 
 ## Navigation in Automation Dashboard
 
