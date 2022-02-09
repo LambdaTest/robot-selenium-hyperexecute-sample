@@ -186,7 +186,7 @@ Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hyperte
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1413" alt="robot_cli1_execution" src="https://user-images.githubusercontent.com/1688653/152779140-a734a848-2ee1-4547-b727-87569baa8cae.png">
+<img width="1413" alt="robot_cli1_execution" src="https://user-images.githubusercontent.com/1688653/153120274-170efd8c-5b23-4ecf-a89b-e70f2b395a22.png">
 
 <img width="1101" alt="robot_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152779162-344651ff-7f80-40ca-9c8a-ebd3da8d9170.png">
 
