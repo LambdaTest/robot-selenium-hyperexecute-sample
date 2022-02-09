@@ -9,6 +9,9 @@ matrix:
 
 runson: win
 
+env:
+  PAT: ${{ .secrets.testKey }}
+
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
