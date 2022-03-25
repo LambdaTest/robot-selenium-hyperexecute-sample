@@ -23,6 +23,8 @@ cacheDirectories:
 pre:
   # Robot Framework and Robot Selenium Library need to be installed globally
   # Rest of the packages can be installed in venv
+  - mkdir pip_cache
+  - mkdir poetry_cache
   - pip3 install -r requirements.txt --cache-dir pip_cache
   - poetry config virtualenvs.path poetry_cache
   - poetry install
