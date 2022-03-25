@@ -37,7 +37,7 @@ uploadArtefacts:
    - *.html
  - name: XML_Reports
    path:
-   -  *.xml
+   - *.xml
 
 testDiscovery:
   type: raw
