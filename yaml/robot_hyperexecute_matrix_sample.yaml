@@ -29,12 +29,12 @@ post:
 mergeArtifacts: true
 
 uploadArtefacts:
-  [
-    {
-      "name": "report",
-      "path": ["report.html"]
-    }
-  ]
+ - name: HTML_Reports
+   path:
+   - *.html
+ - name: XML_Reports
+   path:
+   - *.xml
 
 testSuites:
   - make test_windows_10_edge_latest
