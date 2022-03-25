@@ -32,12 +32,12 @@ post:
 mergeArtifacts: true
 
 uploadArtefacts:
-  [
-    {
-      "name": "report",
-      "path": ["report.html"]
-    }
-  ]
+ - name: HTML_Reports
+   path:
+   - *.html
+ - name: XML_Reports
+   path:
+   -  *.xml
 
 testDiscovery:
   type: raw
