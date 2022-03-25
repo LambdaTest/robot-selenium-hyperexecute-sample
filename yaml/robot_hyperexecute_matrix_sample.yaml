@@ -33,10 +33,10 @@ mergeArtifacts: true
 uploadArtefacts:
  - name: HTML_Reports
    path:
-   - *.html
+    - /*.html
  - name: XML_Reports
    path:
-   - *.xml
+    - /*.xml
 
 testSuites:
   - make test_windows_10_edge_latest
