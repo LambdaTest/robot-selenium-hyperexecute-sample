@@ -12,8 +12,8 @@ retryOnFailure: true
 maxRetries: 5
 concurrency: 2
 
-env:
-  PAT: ${{ .secrets.testKey }}
+# env:
+#  PAT: ${{ .secrets.testKey }}
 
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
