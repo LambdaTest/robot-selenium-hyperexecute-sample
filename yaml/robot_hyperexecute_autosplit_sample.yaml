@@ -36,10 +36,10 @@ mergeArtifacts: true
 uploadArtefacts:
  - name: HTML_Reports
    path:
-   - *.html
+    - /*.html
  - name: XML_Reports
    path:
-   - *.xml
+    - /*.xml
 
 testDiscovery:
   type: raw
