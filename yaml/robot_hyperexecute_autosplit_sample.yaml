@@ -42,6 +42,6 @@ uploadArtefacts:
 testDiscovery:
   type: raw
   mode: dynamic
-  command: grep 'test_windows' makefile | sed 's/\(.*\):/\1 /'
+  command: grep 'test_windows' Makefile | sed 's/\(.*\):/\1 /'
 
 testRunnerCommand: make $test
