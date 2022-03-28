@@ -20,14 +20,14 @@ To know more about how HyperExecute does intelligent Test Orchestration, do chec
    - [Core](#core)
    - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching)
    - [Post Steps](#post-steps)
-   - [Artefacts Management](#artefacts-management)
+   - [Artifacts Management](#artifacts-management)
    - [Test Execution](#test-execution)
 
 * [Auto-Split Execution with Robot](#auto-split-execution-with-robot)
    - [Core](#core-1)
    - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching-1)
    - [Post Steps](#post-steps-1)
-   - [Artefacts Management](#artefacts-management-1)
+   - [Artifacts Management](#artifacts-management-1)
    - [Test Execution](#test-execution-1)
 
 * [Secrets Management](#secrets-management)
@@ -146,11 +146,11 @@ post:
   - cat yaml/robot_hyperexecute_matrix_sample.yaml
 ```
 
-### Artefacts Management
+### Artifacts Management
 
-The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
+The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artifacts and combing artifacts generated under each task.
 
-The *uploadArtefacts* directive informs HyperExecute to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory/file (i.e. *report* that contains the test reports).
+The *uploadArtefacts* directive informs HyperExecute to upload artifacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory/file (i.e. *report* that contains the test reports).
 
 ```yaml
 mergeArtifacts: true
@@ -164,17 +164,17 @@ uploadArtefacts:
   ]
 ```
 
-HyperExecute also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on Artefacts button corresponding to the associated TestID.
+HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on Artifacts button corresponding to the associated TestID.
 
 <img width="1428" alt="robot_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152778296-171cd64a-1606-44cb-89bd-700a414f58ae.png">
 
-Now, you can download the artefacts by clicking on the Download button as shown below:
+Now, you can download the artifacts by clicking on the Download button as shown below:
 
 <img width="1428" alt="robot_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152778325-b769c3ab-cf7e-4fa1-9ab0-9005c237fd0e.png">
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artefacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
 ./concierge --download-artifacts --config --verbose yaml/robot_hyperexecute_matrix_sample.yaml
@@ -286,11 +286,11 @@ The *testRunnerCommand* contains the command that is used for triggering the tes
 testRunnerCommand: python3 -s $test
 ```
 
-### Artefacts Management
+### Artifacts Management
 
-The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
+The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artifacts and combing artifacts generated under each task.
 
-The *uploadArtefacts* directive informs HyperExecute to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory/file (i.e. *report* that contains the test reports).
+The *uploadArtefacts* directive informs HyperExecute to upload artifacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory/file (i.e. *report* that contains the test reports).
 
 ```yaml
 mergeArtifacts: true
@@ -304,17 +304,17 @@ uploadArtefacts:
   ]
 ```
 
-HyperExecute also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on *Artefacts* button corresponding to the associated TestID.
+HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
 
 <img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
 
-Now, you can download the artefacts by clicking on the *Download* button as shown below:
+Now, you can download the artifacts by clicking on the *Download* button as shown below:
 
 <img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152780924-058e83bd-7e9e-4bc9-a52d-834c78760af9.png">
 
 ### Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artefacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
 ./concierge --download-artifacts --verbose --config yaml/robot_hyperexecute_autosplit_sample.yaml
