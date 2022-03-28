@@ -166,11 +166,11 @@ uploadArtefacts:
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on Artifacts button corresponding to the associated TestID.
 
-<img width="1428" alt="robot_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152778296-171cd64a-1606-44cb-89bd-700a414f58ae.png">
+<img width="1428" alt="robot_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/160470835-dc5730d0-e90c-4df4-97ac-8535b3b62a55.png">
 
 Now, you can download the artifacts by clicking on the Download button as shown below:
 
-<img width="1428" alt="robot_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152778325-b769c3ab-cf7e-4fa1-9ab0-9005c237fd0e.png">
+<img width="1428" alt="robot_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/160470847-a2e8789e-d46f-4512-b7a4-95b47b89ec20.png">
 
 ## Test Execution
 
@@ -182,7 +182,7 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
 
-<img width="1414" alt="robot_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152778296-171cd64a-1606-44cb-89bd-700a414f58ae.png">
+<img width="1414" alt="robot_matrix_execution" src="https://user-images.githubusercontent.com/1688653/160470835-dc5730d0-e90c-4df4-97ac-8535b3b62a55.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
@@ -306,11 +306,11 @@ uploadArtefacts:
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
 
-<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
+<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/160470853-8ddf4adc-7046-491e-bee9-d3680257fd8c.png">
 
 Now, you can download the artifacts by clicking on the *Download* button as shown below:
 
-<img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152780924-058e83bd-7e9e-4bc9-a52d-834c78760af9.png">
+<img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/160470856-df19dbfe-7da5-4239-949a-009c8440d8d9.png">
 
 ### Test Execution
 
@@ -322,7 +322,7 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
-<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
+<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/160470853-8ddf4adc-7046-491e-bee9-d3680257fd8c.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
@@ -353,7 +353,7 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 Shown below is the HyperExecute Automation dashboard which also lists the tests that were executed as a part of the test suite:
 
-<img width="1238" alt="robot_hypertest_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152783525-8fb709cc-63d8-4888-b513-4fac37404604.png">
+<img width="1238" alt="robot_hypertest_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/160470835-dc5730d0-e90c-4df4-97ac-8535b3b62a55.png">
 
 Here is a screenshot that lists the automation test that was executed on the HyperExecute grid:
 
