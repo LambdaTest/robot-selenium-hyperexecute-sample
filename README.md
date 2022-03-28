@@ -156,12 +156,12 @@ The *uploadArtefacts* directive informs HyperExecute to upload artifacts [files,
 mergeArtifacts: true
 
 uploadArtefacts:
-  [
-    {
-      "name": "report",
-      "path": ["report.html"]
-    }
-  ]
+ - name: HTML_Reports
+   path:
+    - /*.html
+ - name: XML_Reports
+   path:
+    - /*.xml
 ```
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on Artifacts button corresponding to the associated TestID.
@@ -296,12 +296,12 @@ The *uploadArtefacts* directive informs HyperExecute to upload artifacts [files,
 mergeArtifacts: true
 
 uploadArtefacts:
-  [
-    {
-      "name": "report",
-      "path": ["report.html"]
-    }
-  ]
+ - name: HTML_Reports
+   path:
+    - /*.html
+ - name: XML_Reports
+   path:
+    - /*.xml
 ```
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
