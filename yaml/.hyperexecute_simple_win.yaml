@@ -1,0 +1,27 @@
+---
+version: 0.1
+runson: win
+autosplit: true
+maxRetries: 5
+concurrency: 2
+
+# Dependency caching for Windows
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - pip_cache
+  - poetry_cache
+pre:
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  # Rest of the packages can be installed in venv
+  - pip3 install -r requirements.txt --cache-dir pip_cache
+  - poetry config virtualenvs.path poetry_cache
+  - poetry install
+
+mergeArtifacts: true
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'test_windows' Makefile | sed 's/:.*//'
+
+testRunnerCommand: make $test
