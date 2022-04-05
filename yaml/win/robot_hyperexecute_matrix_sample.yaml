@@ -4,18 +4,15 @@ globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
+matrix:
+  files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
+
 runson: win
 
-autosplit: true
-retryOnFailure: true
-
-maxRetries: 5
-concurrency: 2
-
-# env:
+env:
 #  PAT: ${{ .secrets.testKey }}
+ TARGET_OS: Windows 11
 
-# Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - pip_cache
@@ -29,7 +26,7 @@ pre:
   - poetry config virtualenvs.path poetry_cache
   - poetry install
 post:
-  - cat yaml/robot_hyperexecute_autosplit_sample.yaml
+  - cat yaml/win/robot_hyperexecute_matrix_sample.yaml
 
 mergeArtifacts: true
 
@@ -41,9 +38,6 @@ uploadArtefacts:
    path:
     - /*.xml
 
-testDiscovery:
-  type: raw
-  mode: dynamic
-  command: grep 'test_windows' Makefile | sed 's/\(.*\):/\1 /'
-
-testRunnerCommand: make $test
+testSuites:
+  - make test_windows_10_edge_latest
+  - make test_windows_10_chrome_latest

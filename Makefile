@@ -9,3 +9,9 @@ test_windows_10_edge_latest:
 
 test_windows_10_chrome_latest:
 	robot --variable platform:"Windows 10" --variable browserName:Chrome --variable version:latest --variable visual:false --variable network:false --variable console:false Tests/*.robot
+
+test_mac_firefox_latest:
+	robot --variable platform:"MacOS Catalina" --variable browserName:Firefox --variable version:latest --variable visual:false --variable network:false --variable console:false Tests/*.robot
+
+test_mac_chrome_latest:
+	robot --variable platform:"MacOS Catalina" --variable browserName:Chrome --variable version:latest --variable visual:false --variable network:false --variable console:false Tests/*.robot

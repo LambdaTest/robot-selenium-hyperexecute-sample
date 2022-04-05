@@ -1,0 +1,49 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+runson: win
+
+autosplit: true
+retryOnFailure: true
+
+maxRetries: 5
+concurrency: 2
+
+env:
+#  PAT: ${{ .secrets.testKey }}
+ TARGET_OS: Windows 11
+
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - pip_cache
+  - poetry_cache
+pre:
+  # Robot Framework and Robot Selenium Library need to be installed globally
+  # Rest of the packages can be installed in venv
+  - mkdir pip_cache
+  - mkdir poetry_cache
+  - pip3 install -r requirements.txt --cache-dir pip_cache
+  - poetry config virtualenvs.path poetry_cache
+  - poetry install
+post:
+  - cat yaml/win/robot_hyperexecute_autosplit_sample.yaml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+ - name: HTML_Reports
+   path:
+    - /*.html
+ - name: XML_Reports
+   path:
+    - /*.xml
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep 'test_windows' Makefile | sed 's/\(.*\):/\1 /'
+
+testRunnerCommand: make $test
