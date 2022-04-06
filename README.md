@@ -177,7 +177,7 @@ Now, you can download the artifacts by clicking on the Download button as shown 
 The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./concierge --download-artifacts --config --verbose yaml/robot_hyperexecute_matrix_sample.yaml
+./hyperexecute --download-artifacts --config --verbose yaml/robot_hyperexecute_matrix_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
@@ -317,7 +317,7 @@ Now, you can download the artifacts by clicking on the *Download* button as show
 The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./concierge --download-artifacts --verbose --config yaml/robot_hyperexecute_autosplit_sample.yaml
+./hyperexecute --download-artifacts --verbose --config yaml/robot_hyperexecute_autosplit_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
