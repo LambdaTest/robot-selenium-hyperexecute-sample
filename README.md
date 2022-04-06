@@ -13,7 +13,7 @@ To know more about how HyperExecute does intelligent Test Orchestration, do chec
 # How to run Selenium automation tests on HyperExecute (using Robot framework)
 
 * [Pre-requisites](#pre-requisites)
-   - [Download Concierge](#download-concierge)
+   - [Download HyperExecute CLI](#download-hyperexecute-cli)
    - [Configure Environment Variables](#configure-environment-variables)
 
 * [Matrix Execution with Robot](#matrix-execution-with-robot)
@@ -35,17 +35,17 @@ To know more about how HyperExecute does intelligent Test Orchestration, do chec
 
 # Pre-requisites
 
-Before using HyperExecute, you have to download Concierge CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
+Before using HyperExecute, you have to download HyperExecute CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
 
-## Download Concierge
+## Download HyperExecute CLI
 
-Concierge is a CLI for interacting and running the tests on the HyperExecute Grid. Concierge provides a host of other useful features that accelerate test execution. In order to trigger tests using Concierge, you need to download the Concierge binary corresponding to the platform (or OS) from where the tests are triggered:
+HyperExecute CLI is the CLI for interacting and running the tests on the HyperExecute Grid. The CLI provides a host of other useful features that accelerate test execution. In order to trigger tests using the CLI, you need to download the HyperExecute CLI binary corresponding to the platform (or OS) from where the tests are triggered:
 
-Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the Concierge binary:
+Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the HyperExecute CLI binary:
 
-* Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
-* Linux: https://downloads.lambdatest.com/concierge/linux/concierge
-* Windows: https://downloads.lambdatest.com/concierge/windows/concierge.exe
+* Mac: https://downloads.lambdatest.com/hyperexecute/darwin/hyperexecute
+* Linux: https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
+* Windows: https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe
 
 ## Configure Environment Variables
 
