@@ -39,7 +39,7 @@ Before using HyperExecute, you have to download HyperExecute CLI corresponding t
 
 ## Download HyperExecute CLI
 
-HyperExecute CLI is the CLI for interacting and running the tests on the HyperExecute Grid. The CLI provides a host of other useful features that accelerate test execution. In order to trigger tests using the CLI, you need to download the HyperExecute CLI binary corresponding to the platform (or OS) from where the tests are triggered:
+HyperExecute CLI is a CLI for interacting and running the tests on the HyperExecute Grid. It provides a host of other useful features that accelerate test execution. In order to trigger tests using the CLI, you need to download the HyperExecute CLI binary corresponding to the platform (or OS) from where the tests are triggered:
 
 Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the HyperExecute CLI binary:
 
@@ -80,7 +80,7 @@ Also, the *key:value* pairs are opaque strings for HyperExecute. For more inform
 
 ### Core
 
-In the current example, matrix YAML file (*yaml/robot_hyperexecute_matrix_sample.yaml*) in the repo contains the following configuration:
+In the current example, matrix YAML file (*yaml/win/robot_hyperexecute_matrix_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -139,11 +139,11 @@ pre:
 
 ### Post Steps
 
-Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/robot_hyperexecute_matrix_sample.yaml*
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/win/robot_hyperexecute_matrix_sample.yaml*
 
 ```yaml
 post:
-  - cat yaml/robot_hyperexecute_matrix_sample.yaml
+  - cat yaml/win/robot_hyperexecute_matrix_sample.yaml
 ```
 
 ### Artifacts Management
@@ -174,10 +174,10 @@ Now, you can download the artifacts by clicking on the Download button as shown 
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./hyperexecute --download-artifacts --config --verbose yaml/robot_hyperexecute_matrix_sample.yaml
+./hyperexecute --download-artifacts --config --verbose yaml/win/robot_hyperexecute_matrix_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
@@ -186,9 +186,9 @@ Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hype
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1413" alt="robot_cli1_execution" src="https://user-images.githubusercontent.com/1688653/153120274-170efd8c-5b23-4ecf-a89b-e70f2b395a22.png">
+<img width="1413" alt="robot_cli1_execution" src="https://user-images.githubusercontent.com/1688653/162383480-f6e2e389-3d23-4bb1-85b3-21c07a8b8fa7.png">
 
-<img width="1101" alt="robot_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152779162-344651ff-7f80-40ca-9c8a-ebd3da8d9170.png">
+<img width="1101" alt="robot_cli2_execution" src="https://user-images.githubusercontent.com/1688653/162383481-39ccfa30-4bd5-4745-bf80-a87f1cede631.png">
 
 ## Auto-Split Execution with Robot
 
@@ -198,7 +198,7 @@ For more information about auto-split execution, check out the [Auto-Split Getti
 
 ### Core
 
-Auto-split YAML file (*yaml/robot_hyperexecute_autosplit_sample.yaml*) in the repo contains the following configuration:
+Auto-split YAML file (*yaml/win/robot_hyperexecute_autosplit_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -257,11 +257,11 @@ pre:
 
 ### Post Steps
 
-Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/robot_hyperexecute_matrix_sample.yaml*
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/win/robot_hyperexecute_matrix_sample.yaml*
 
 ```yaml
 post:
-  - cat yaml/robot_hyperexecute_autpsplit_sample.yaml
+  - cat yaml/win/robot_hyperexecute_autpsplit_sample.yaml
 ```
 
 The *testDiscovery* directive contains the command that gives details of the mode of execution, along with detailing the command that is used for test execution. Here, we are fetching the list of Python files that would be further executed using the *value* passed in the *testRunnerCommand*
@@ -306,29 +306,29 @@ uploadArtefacts:
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
 
-<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/160470853-8ddf4adc-7046-491e-bee9-d3680257fd8c.png">
+<img width="1415" alt="robot_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/162383459-a812913f-a633-4b00-8cc0-39d1e4a41bbf.png">
 
 Now, you can download the artifacts by clicking on the *Download* button as shown below:
 
-<img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/160470856-df19dbfe-7da5-4239-949a-009c8440d8d9.png">
+<img width="1422" alt="robot_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/162383462-6159654c-ca02-45db-935b-d4d3cc5afef9.png">
 
 ### Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./hyperexecute --download-artifacts --verbose --config yaml/robot_hyperexecute_autosplit_sample.yaml
+./hyperexecute --download-artifacts --verbose --config yaml/win/robot_hyperexecute_autosplit_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
 
-<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/160470853-8ddf4adc-7046-491e-bee9-d3680257fd8c.png">
+<img width="1414" alt="robot_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/162383459-a812913f-a633-4b00-8cc0-39d1e4a41bbf.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1422" alt="robot_autosplit_cli1_execution" src="https://user-images.githubusercontent.com/1688653/152782594-fc4ed050-f425-403c-b8d6-f8894d66ab93.png">
+<img width="1422" alt="robot_autosplit_cli1_execution" src="https://user-images.githubusercontent.com/1688653/162383466-af86f03e-2459-4ef8-986a-32a9abfb60fa.png">
 
-<img width="1406" alt="robot_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152783131-f1b8ef7a-48ce-447b-ba48-320bdc43656e.png">
+<img width="1406" alt="robot_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/162383469-fc172b8e-6033-476a-bf2d-137cd62ab609.png">
 
 ## Secrets Management
 
@@ -353,11 +353,11 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 Shown below is the HyperExecute Automation dashboard which also lists the tests that were executed as a part of the test suite:
 
-<img width="1238" alt="robot_hyperexecute_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/160470835-dc5730d0-e90c-4df4-97ac-8535b3b62a55.png">
+<img width="1238" alt="robot_hyperexecute_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/162383474-152c59ad-0e66-47f0-956e-0fd590c821f1.png">
 
 Here is a screenshot that lists the automation test that was executed on the HyperExecute grid:
 
-<img width="1423" alt="robot_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152784306-749c5d8c-b72c-40e9-a707-5374cc530430.png">
+<img width="1423" alt="robot_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/162383477-d5bce408-69c1-49dc-b31a-58da54c3eb64.png">
 
 ## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
