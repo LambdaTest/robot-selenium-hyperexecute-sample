@@ -72,37 +72,6 @@ set LT_USERNAME=LT_USERNAME
 set LT_ACCESS_KEY=LT_ACCESS_KEY
 ```
 
-The <b>HYPERXECUTE_PLATFORM</b> environment variable must be set to the platform (or operating system) on which you wish to perform the test execution. Here are the values that can be assigned to HYPEREXECUTE_PLATFORM
-
-* win10 for Windows OS
-* linux for Linux OS
-* macOS Catalina for macOS
-
-Use the commands mentioned below, to set the HyperExecute Platform (i.e. HYPEREXECUTE_PLATFORM) to Linux, macOS, or Windows respectively:
-
-Host OS: Linux
-
-```bash
-export HYPERXECUTE_PLATFORM=win10
-export HYPERXECUTE_PLATFORM=linux
-export HYPERXECUTE_PLATFORM=macOS Catalina
-```
-
-Host OS: macOS
-
-```bash
-export HYPERXECUTE_PLATFORM=win10
-export HYPERXECUTE_PLATFORM=linux
-export HYPERXECUTE_PLATFORM=macOS Catalina
-```
-
-Host OS: Windows
-
-```bash
-set HYPERXECUTE_PLATFORM=wind10
-set HYPERXECUTE_PLATFORM=linux
-set HYPERXECUTE_PLATFORM=macOS Catalina
-```
 ## Auto-Split Execution with Robot
 
 Auto-split execution mechanism lets you run tests at predefined concurrency and distribute the tests over the available infrastructure. Concurrency can be achieved at different levels - file, module, test suite, test, scenario, etc.
@@ -227,10 +196,22 @@ Now, you can download the artifacts by clicking on the *Download* button as show
 
 ### Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_autosplit_sample.yaml* for Windows and *yaml/win/robot_hyperexecute_autosplit_sample.yaml* for Linux).
+
+#### Execute Robot tests using Autosplit mechanism on Windows platform
+
+Run the following command on the terminal to trigger the tests in Robot files with HyperExecute platform set to Windows. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
 ./hyperexecute --download-artifacts --verbose --config yaml/win/robot_hyperexecute_autosplit_sample.yaml
+```
+
+#### Execute Robot tests using Autosplit mechanism on Windows platform
+
+Run the following command on the terminal to trigger the tests in Robot files with HyperExecute platform set to Linux. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+
+```bash
+./hyperexecute --download-artifacts --verbose --config yaml/linux/robot_hyperexecute_autosplit_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
@@ -345,10 +326,22 @@ Now, you can download the artifacts by clicking on the Download button as shown 
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/robot_hyperexecute_matrix_sample.yaml* for Windows and *yaml/win/robot_hyperexecute_matrix_sample.yaml* for Linux).
+
+#### Execute Robot tests using Matrix mechanism on Windows platform
+
+Run the following command on the terminal to trigger the tests in Robot files with HyperExecute platform set to Windows. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./hyperexecute --download-artifacts --config --verbose yaml/win/robot_hyperexecute_matrix_sample.yaml
+./hyperexecute --download-artifacts --verbose --config yaml/win/robot_hyperexecute_matrix_sample.yaml
+```
+
+#### Execute Robot tests using Matrix mechanism on Linux platform
+
+Run the following command on the terminal to trigger the tests in Robot files with HyperExecute platform set to Linux. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+
+```bash
+./hyperexecute --download-artifacts --verbose --config yaml/linux/robot_hyperexecute_matrix_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
