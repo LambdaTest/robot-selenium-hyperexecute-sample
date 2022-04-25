@@ -14,7 +14,7 @@ concurrency: 2
 
 env:
 #  PAT: ${{ .secrets.testKey }}
- TARGET_OS: Windows 11
+ TARGET_OS: Windows 10
 
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
@@ -23,8 +23,6 @@ cacheDirectories:
 pre:
   # Robot Framework and Robot Selenium Library need to be installed globally
   # Rest of the packages can be installed in venv
-  - mkdir -p pip_cache
-  - mkdir -p poetry_cache
   - pip3 install -r requirements.txt --cache-dir pip_cache
   - poetry config virtualenvs.path poetry_cache
   - poetry install
