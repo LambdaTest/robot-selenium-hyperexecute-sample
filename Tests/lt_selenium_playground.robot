@@ -22,7 +22,7 @@ Demonstration of Robot framework on Selenium Playground
 	Sleep   5
 
 	# Email
-	${email}   Set Variable    //input[@name='email']
+	${email}   Set Variable    inputEmail4
 	Input text  ${email}       testing@gmail.com
 
     # Password
