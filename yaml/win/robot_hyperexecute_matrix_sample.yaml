@@ -8,6 +8,9 @@ matrix:
   files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
 
 runson: win
+retryOnFailure: true
+
+maxRetries: 1
 
 env:
 #  PAT: ${{ .secrets.testKey }}
