@@ -46,3 +46,5 @@ testDiscovery:
   command: grep 'test_mac' Makefile | sed 's/\(.*\):/\1 /'
 
 testRunnerCommand: make $test
+
+jobLabel: [selenium-robot, mac, autosplit]

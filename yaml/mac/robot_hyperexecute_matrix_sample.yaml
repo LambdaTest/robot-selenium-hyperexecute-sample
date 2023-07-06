@@ -43,3 +43,5 @@ uploadArtefacts:
 testSuites:
   - make test_mac_firefox_latest
   - make test_mac_chrome_latest
+
+jobLabel: [selenium-robot, mac, matrix]

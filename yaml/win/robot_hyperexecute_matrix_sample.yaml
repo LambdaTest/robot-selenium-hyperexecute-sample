@@ -42,3 +42,5 @@ uploadArtefacts:
 testSuites:
   - make test_windows_10_edge_latest
   - make test_windows_10_chrome_latest
+
+jobLabel: [selenium-robot, win, matrix]

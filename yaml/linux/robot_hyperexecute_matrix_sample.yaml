@@ -43,3 +43,5 @@ uploadArtefacts:
 testSuites:
   - make test_linux_chrome_latest
   - make test_linux_firefox_latest
+
+jobLabel: [selenium-robot, linux, matrix]

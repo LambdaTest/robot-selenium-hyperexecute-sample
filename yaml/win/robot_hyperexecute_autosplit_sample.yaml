@@ -45,3 +45,5 @@ testDiscovery:
   command: grep 'test_windows' Makefile | sed 's/\(.*\):/\1 /'
 
 testRunnerCommand: make $test
+
+jobLabel: [selenium-robot, win, autosplit]
