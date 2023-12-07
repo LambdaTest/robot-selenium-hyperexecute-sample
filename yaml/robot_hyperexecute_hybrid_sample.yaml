@@ -55,4 +55,4 @@ testDiscovery:
 
 testRunnerCommand: make $test
 
-jobLabel: [selenium-testng, hybrid]
+jobLabel: [selenium-robot, hybrid]
