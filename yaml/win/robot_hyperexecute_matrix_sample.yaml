@@ -39,6 +39,12 @@ uploadArtefacts:
    path:
     - /*.xml
 
+report: true
+partialReports:
+    type: json
+    location: /
+    frameworkName: extent
+
 testSuites:
   - make test_windows_10_edge_latest
   - make test_windows_10_chrome_latest

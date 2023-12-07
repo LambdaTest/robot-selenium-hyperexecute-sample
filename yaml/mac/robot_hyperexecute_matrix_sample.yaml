@@ -40,6 +40,12 @@ uploadArtefacts:
    path:
     - /*.xml
 
+report: true
+partialReports:
+    type: json
+    location: /
+    frameworkName: extent
+
 testSuites:
   - make test_mac_firefox_latest
   - make test_mac_chrome_latest
