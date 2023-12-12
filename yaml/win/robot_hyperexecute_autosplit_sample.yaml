@@ -39,6 +39,12 @@ uploadArtefacts:
    path:
     - /*.xml
 
+report: true
+partialReports:
+    type: json
+    location: /
+    frameworkName: extent
+
 testDiscovery:
   type: raw
   mode: dynamic

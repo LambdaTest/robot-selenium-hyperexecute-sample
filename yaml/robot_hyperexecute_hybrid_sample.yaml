@@ -1,26 +1,28 @@
----
 version: 0.1
-globalTimeout: 90
-testSuiteTimeout: 90
-testSuiteStep: 90
+globalTimeout: 150
+testSuiteTimeout: 150
+testSuiteStep: 150
 
-runson: mac
-
+runson: ${matrix.os}
+retryOnFailure: false
 autosplit: true
-retryOnFailure: true
-
 maxRetries: 1
-concurrency: 2
+parallelism: 2
+concurrency: 3
+
+matrix:
+  os: [mac, win, linux]
 
 env:
 #  PAT: ${{ .secrets.testKey }}
- TARGET_OS: MacOS Catalina
+ TARGET_OS: LINUX
 
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - pip_cache
   - poetry_cache
+
 pre:
   # Robot Framework and Robot Selenium Library need to be installed globally
   # Rest of the packages can be installed in venv
@@ -28,7 +30,7 @@ pre:
   - poetry config virtualenvs.path poetry_cache
   - poetry install
 post:
-  - cat yaml/mac/robot_hyperexecute_autosplit_sample.yaml
+  - cat yaml/robot_hyperexecute_hybrid_sample.yaml
 
 mergeArtifacts: true
 
@@ -49,8 +51,8 @@ partialReports:
 testDiscovery:
   type: raw
   mode: dynamic
-  command: grep 'test_mac' Makefile | sed 's/\(.*\):/\1 /'
+  command: grep 'test_linux' Makefile | sed 's/\(.*\):/\1 /'
 
 testRunnerCommand: make $test
 
-jobLabel: [selenium-robot, mac, autosplit]
+jobLabel: [selenium-robot, hybrid]
