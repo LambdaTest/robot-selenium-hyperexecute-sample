@@ -1,52 +1,58 @@
 ---
 version: 0.1
+runtime:
+  language: python
+  version: "3.11"
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
 matrix:
-  files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
+  files:
+    - Tests/LtTodoApp.robot
+    - Tests/LtSeleniumPlayground.robot
 
 runson: win
 retryOnFailure: true
-
 maxRetries: 1
 
 env:
-#  PAT: ${{ .secrets.testKey }}
- TARGET_OS: Windows 11
+  TARGET_OS: Windows 11
 
 cacheKey: '{{ checksum "requirements.txt" }}'
+
 cacheDirectories:
   - pip_cache
-  - poetry_cache
+
 pre:
-  # Robot Framework and Robot Selenium Library need to be installed globally
-  # Rest of the packages can be installed in venv
-  - pip3 install -r requirements.txt --cache-dir pip_cache
-  - poetry config virtualenvs.path poetry_cache
-  - poetry install
+  - python -m pip install --upgrade pip
+  - python -m pip install -r requirements.txt --cache-dir pip_cache
+
 post:
-  - cat yaml/win/robot_hyperexecute_matrix_sample.yaml
+  - type yaml\win\robot_hyperexecute_matrix_sample.yaml
 
 mergeArtifacts: true
 
 uploadArtefacts:
- - name: HTML_Reports
-   path:
-    - /*.html
- - name: XML_Reports
-   path:
-    - /*.xml
+  - name: HTML_Reports
+    path:
+      - /*.html
+  - name: XML_Reports
+    path:
+      - /*.xml
 
 report: true
+
 partialReports:
-    type: json
-    location: /
-    frameworkName: extent
+  type: json
+  location: /
+  frameworkName: extent
 
 testSuites:
   - make test_windows_10_edge_latest
   - make test_windows_10_chrome_latest
 
-jobLabel: [selenium-robot, win, matrix]
+jobLabel:
+  - selenium-robot
+  - win
+  - matrix

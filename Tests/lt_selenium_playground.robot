@@ -1,66 +1,29 @@
 *** Settings ***
 
-Resource  ../Resources/Common.robot
+Resource    ../Resources/Common.robot
 
-Test Setup  Common.Open test browser for Selenium Playground
-Test Teardown  Common.Close test browser
-
-*** Variables ***
+Test Setup       Common.Open Input Form Demo
+Test Teardown    Common.Close test browser
 
 *** Test Cases ***
 
 Demonstration of Robot framework on Selenium Playground
-	[Timeout]   ${TIMEOUT}
-	Page should contain element  xpath://a[.='Input Form Submit']
+    [Timeout]    ${TIMEOUT}
 
-	Click link  xpath=//a[.='Input Form Submit']
-	Page should contain element  name:name
-	# Enter details in the input form
+    Wait Until Element Is Visible    id:name    20s
 
-	# Name
-	Input text  name:name   TestName
-	Sleep   5
+    Input Text    id:name    TestName
+    Input Text    id:inputEmail4    testing@gmail.com
+    Input Text    xpath=//input[@name='password']    Password1
+    Input Text    id:company    LambdaTest
+    Input Text    id:websitename    https://www.testmuai.com
 
-	# Email
-	${email}   Set Variable    inputEmail4
-	Input text  ${email}       testing@gmail.com
+    Select From List By Value    name:country    US
 
-    # Password
-	${passwd}   Set Variable    //input[@name='password']
-	Input text  ${passwd}       Password1
+    Input Text    id:inputCity    San Jose
+    Input Text    id:inputAddress1    Googleplex, 1600 Amphitheatre Pkwy
+    Input Text    id:inputAddress2    Mountain View, CA 94043
+    Input Text    id:inputState    California
+    Input Text    id:inputZip    94088
 
-	# Company
-	${company}  Set Variable    //input[@id='company']
-	Input text  ${company}      LambdaTest
-
-	# Website
-	${website}  Set Variable    css=#websitename
-	Input text  ${website}      https://wwww.lambdatest.com
-
-	# Country
-	${country}   Set Variable    name:country
-	select from list by value    ${country}     US
-
-    # City
-	${city}   Set Variable    //input[@id='inputCity']
-	Input text  ${city}       San Jose
-
-	# Address 1
-	${address1}  Set Variable    id:inputAddress1
-	Input text  ${address1}      Googleplex, 1600 Amphitheatre Pkwy
-
-	# Website
-	${address2}  Set Variable     id:inputAddress2
-	Input text  ${address2}       Mountain View, CA 94043
-
-	# State
-	${state}      Set Variable      css=#inputState
-	Input text    ${state}          California
-
-    # City
-	${city}   Set Variable    //input[@id='inputCity']
-	Input text  ${city}       San Jose
-
-	# Zip Code
-	${address1}  Set Variable    css=#inputZip
-	Input text  ${address1}      94088
+    Sleep    2s

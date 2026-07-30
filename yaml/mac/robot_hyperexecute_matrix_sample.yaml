@@ -1,53 +1,57 @@
 ---
 version: 0.1
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
 matrix:
-  files: ["Tests/lt_todo_app.robot", "Tests/lt_selenium_playground.robot"]
+  files:
+    - Tests/LtTodoApp.robot
+    - Tests/LtSeleniumPlayground.robot
 
 runson: mac
-retryOnFailure: true
 
+retryOnFailure: true
 maxRetries: 1
 
 env:
-#  PAT: ${{ .secrets.testKey }}
- TARGET_OS: MacOS Catalina
+  TARGET_OS: MacOS Catalina
 
-# Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
+
 cacheDirectories:
   - pip_cache
-  - poetry_cache
+
 pre:
-  # Robot Framework and Robot Selenium Library need to be installed globally
-  # Rest of the packages can be installed in venv
-  - pip3 install -r requirements.txt --cache-dir pip_cache
-  - poetry config virtualenvs.path poetry_cache
-  - poetry install
+  - python3 -m pip install -r requirements.txt --cache-dir pip_cache
+
 post:
   - cat yaml/mac/robot_hyperexecute_matrix_sample.yaml
 
 mergeArtifacts: true
 
 uploadArtefacts:
- - name: HTML_Reports
-   path:
-    - /*.html
- - name: XML_Reports
-   path:
-    - /*.xml
+  - name: HTML_Reports
+    path:
+      - /*.html
+
+  - name: XML_Reports
+    path:
+      - /*.xml
 
 report: true
+
 partialReports:
-    type: json
-    location: /
-    frameworkName: extent
+  type: json
+  location: /
+  frameworkName: extent
 
 testSuites:
   - make test_mac_firefox_latest
   - make test_mac_chrome_latest
 
-jobLabel: [selenium-robot, mac, matrix]
+jobLabel:
+  - selenium-robot
+  - mac
+  - matrix

@@ -13,38 +13,36 @@ maxRetries: 1
 concurrency: 2
 
 env:
-#  PAT: ${{ .secrets.testKey }}
- TARGET_OS: MacOS Catalina
+  TARGET_OS: MacOS Catalina
 
-# Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
+
 cacheDirectories:
   - pip_cache
-  - poetry_cache
+
 pre:
-  # Robot Framework and Robot Selenium Library need to be installed globally
-  # Rest of the packages can be installed in venv
   - pip3 install -r requirements.txt --cache-dir pip_cache
-  - poetry config virtualenvs.path poetry_cache
-  - poetry install
+
 post:
   - cat yaml/mac/robot_hyperexecute_autosplit_sample.yaml
 
 mergeArtifacts: true
 
 uploadArtefacts:
- - name: HTML_Reports
-   path:
-    - /*.html
- - name: XML_Reports
-   path:
-    - /*.xml
+  - name: HTML_Reports
+    path:
+      - /*.html
+
+  - name: XML_Reports
+    path:
+      - /*.xml
 
 report: true
+
 partialReports:
-    type: json
-    location: /
-    frameworkName: extent
+  type: json
+  location: /
+  frameworkName: extent
 
 testDiscovery:
   type: raw
@@ -53,4 +51,7 @@ testDiscovery:
 
 testRunnerCommand: make $test
 
-jobLabel: [selenium-robot, mac, autosplit]
+jobLabel:
+  - selenium-robot
+  - mac
+  - autosplit
