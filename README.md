@@ -13,7 +13,7 @@
 With TestMu AI (Formerly LambdaTest), you can run Robot Framework Selenium tests at scale using HyperExecute smart test orchestration. This sample shows how to configure Python + Robot Framework with HyperExecute to run on the TestMu AI cloud.
 
 - [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
-- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/robot-on-hyperexecute-grid/) for the full setup walkthrough.
+- Follow the [Run Robot Framework tests on HyperExecute](https://www.testmuai.com/support/docs/robot-on-hyperexecute-grid/) for the full setup walkthrough.
 
 ### Prerequisites
 
